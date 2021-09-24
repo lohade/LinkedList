@@ -22,19 +22,31 @@ public class LinkedList {
         head=newNode;
     }
 
+
     public void display(){
         Node temp=head;
+
         if(head==null){
             System.out.println("empty list");
             return;
         }
-
-        while(temp.next!=null){
-            System.out.print("->"+temp.data);
+        while(temp!=null){
+            System.out.print("->"+temp.data+"");
             temp=temp.next;
         }
-        if(temp.next==null) {
-            System.out.print("->"+temp.data);
+    }
+    public void reverse_display(){
+        Node temp=head;
+        Node prev=null,current;
+
+        while (temp!=null){
+            current=temp;
+            temp=temp.next;
+
+            current.next=prev;
+            prev=current;
+            head=current;
+            //System.out.println(temp.data);
         }
     }
 
@@ -51,7 +63,17 @@ public class LinkedList {
         System.out.println("enter third element:");
         int data3=scanner.nextInt();
         linkedlist.addNode(data3);
-        linkedlist.display();
+        System.out.println("enter choice");
+        int ch= scanner.nextInt();
+        switch(ch) {
+            case 1:
+                linkedlist.reverse_display();
+                linkedlist.display();
+                break;
+            case 2:
+                System.out.println("exit");
+                break;
+        }
 
 
     }
