@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.Scanner;
+
 public class LinkedList {
     public Node head=null;
 
@@ -39,9 +41,16 @@ public class LinkedList {
     public static void main(String[] args) {
         // write your code here
         LinkedList linkedlist=new LinkedList();
-        linkedlist.addNode(70);
-        linkedlist.addNode(30);
-        linkedlist.addNode(56);
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("enter first element:");
+        int data1=scanner.nextInt();
+        linkedlist.addNode(data1);
+        System.out.println("enter second element:");
+        int data2=scanner.nextInt();
+        linkedlist.addNode(data2);
+        System.out.println("enter third element:");
+        int data3=scanner.nextInt();
+        linkedlist.addNode(data3);
         linkedlist.display();
 
 
