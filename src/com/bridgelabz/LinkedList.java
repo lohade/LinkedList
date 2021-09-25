@@ -1,8 +1,5 @@
 package com.bridgelabz;
-
-
 import java.util.Scanner;
-
 public class LinkedList {
     Scanner scanner=new Scanner(System.in);
     public Node head = null;
@@ -197,10 +194,7 @@ public class LinkedList {
                 case 8:
                     status=false;
                     break;
-
-
             }
         } while(status);
     }
-
 }
