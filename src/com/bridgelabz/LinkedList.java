@@ -112,6 +112,16 @@ public class LinkedList {
         ptr.next = newNode;
 
     }
+    public void delete(int data){
+        Node ptr=head;
+        Node last=head;
+        while(ptr.data!=data){
+            last=ptr;
+            ptr=ptr.next;
+        }
+        last.next=ptr.next;
+        ptr=null;
+    }
     public void search(int data){
         Node temp=head;
         int position=1;
@@ -131,13 +141,14 @@ public class LinkedList {
         LinkedList linkedlist = new LinkedList();//display linked list  object
         boolean status = true;
         do {
-            System.out.println("enter choice for:\n1:adding elements in linked list:\n2:insert element in middle of linked list:\n3:delete first node:\n4:deleting last elements:\n5:search the elements:\n6:insert anywhere:\n7:exit");
+            System.out.println("enter choice for:\n1:adding elements in linked list:\n2:insert element in middle of linked list:\n3:delete first node:\n4:deleting last elements:\n5:search the elements:\n6:insert anywhere:\n7:delete anywhere:\n8:exit");
             Scanner scanner=new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     boolean value = true;
                     while (value) {
+                        System.out.println("enter elements to add:");
                         int data = scanner.nextInt();
                         linkedlist.addNode(data);
                         System.out.println("adding  more elements in linked list enter 1 else 0:");
@@ -177,9 +188,16 @@ public class LinkedList {
                     int ele= scanner.nextInt();
                     linkedlist.insert(ele);
                     linkedlist.display();
+
                 case 7:
+                    System.out.println("enter node to delete:");
+                    int elements= scanner.nextInt();
+                    linkedlist.delete(elements);
+                    linkedlist.display();
+                case 8:
                     status=false;
                     break;
+
 
             }
         } while(status);
