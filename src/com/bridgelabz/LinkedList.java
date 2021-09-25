@@ -4,6 +4,7 @@ package com.bridgelabz;
 import java.util.Scanner;
 
 public class LinkedList {
+    Scanner scanner=new Scanner(System.in);
     public Node head = null;
 
     static class Node {
@@ -94,17 +95,44 @@ public class LinkedList {
             Node last=head;
             while(last.next.next!=null)
                 last=last.next;
-                last.next=null;
+            last.next=null;
         }
     }
+    public void insert(int data){
+        Node ptr = head;
+        System.out.println("Enter the data need to add");
+        Node newNode = new Node(scanner.nextInt());
+        //ptr traverse till given node data after that need to inser the newnode in the linkedlist
+        while(ptr.data != data)
+        {
+            ptr = ptr.next;
+        }
+        //newNode point to ptr.next
+        newNode.next = ptr.next;
+        ptr.next = newNode;
 
+    }
+    public void search(int data){
+        Node temp=head;
+        int position=1;
+        while(temp.data!=data){
 
+            temp=temp.next;
+            position++;
+        }
+        if(temp.data==data){
+            System.out.println("Node:"+data+ "is present at:"+position);
+        }
+        else{
+            System.out.println("node is not present");
+        }
+    }
     public static void main(String[] args) {
         LinkedList linkedlist = new LinkedList();//display linked list  object
         boolean status = true;
         do {
-            System.out.println("enter choice for:\n1:adding elements in linked list:\n2:insert element in middle of linked list:\n3:delete first node:\n4:deleting last elements:\n5:exit");
-            Scanner scanner = new Scanner(System.in);
+            System.out.println("enter choice for:\n1:adding elements in linked list:\n2:insert element in middle of linked list:\n3:delete first node:\n4:deleting last elements:\n5:search the elements:\n6:insert anywhere:\n7:exit");
+            Scanner scanner=new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -138,11 +166,23 @@ public class LinkedList {
                 case 4:
                     linkedlist.poplast();
                     linkedlist.display();
+
                 case 5:
+                    int key= scanner.nextInt();
+                    linkedlist.search(key);
+                    linkedlist.display();
+                    break;
+                case 6:
+                    System.out.println("insert key:");
+                    int ele= scanner.nextInt();
+                    linkedlist.insert(ele);
+                    linkedlist.display();
+                case 7:
                     status=false;
                     break;
 
             }
         } while(status);
     }
+
 }
