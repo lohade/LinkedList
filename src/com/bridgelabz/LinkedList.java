@@ -1,9 +1,7 @@
 package com.bridgelabz;
-
-
 import java.util.Scanner;
-
 public class LinkedList {
+    Scanner scanner=new Scanner(System.in);
     public Node head = null;
 
     static class Node {
@@ -97,6 +95,30 @@ public class LinkedList {
             last.next=null;
         }
     }
+    public void insert(int data){
+        Node ptr = head;
+        System.out.println("Enter the data need to add");
+        Node newNode = new Node(scanner.nextInt());
+        //ptr traverse till given node data after that need to inser the newnode in the linkedlist
+        while(ptr.data != data)
+        {
+            ptr = ptr.next;
+        }
+        //newNode point to ptr.next
+        newNode.next = ptr.next;
+        ptr.next = newNode;
+
+    }
+    public void delete(int data){
+        Node ptr=head;
+        Node last=head;
+        while(ptr.data!=data){
+            last=ptr;
+            ptr=ptr.next;
+        }
+        last.next=ptr.next;
+        ptr=null;
+    }
     public void search(int data){
         Node temp=head;
         int position=1;
@@ -112,18 +134,18 @@ public class LinkedList {
             System.out.println("node is not present");
         }
     }
-
     public static void main(String[] args) {
         LinkedList linkedlist = new LinkedList();//display linked list  object
         boolean status = true;
         do {
-            System.out.println("enter choice for:\n1:adding elements in linked list:\n2:insert element in middle of linked list:\n3:delete first node:\n4:deleting last elements:\n5:Search the elements:\n6:exit");
-            Scanner scanner = new Scanner(System.in);
+            System.out.println("enter choice for:\n1:adding elements in linked list:\n2:insert element in middle of linked list:\n3:delete first node:\n4:deleting last elements:\n5:search the elements:\n6:insert anywhere:\n7:delete anywhere:\n8:exit");
+            Scanner scanner=new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     boolean value = true;
                     while (value) {
+                        System.out.println("enter elements to add:");
                         int data = scanner.nextInt();
                         linkedlist.addNode(data);
                         System.out.println("adding  more elements in linked list enter 1 else 0:");
@@ -156,11 +178,22 @@ public class LinkedList {
                 case 5:
                     int key= scanner.nextInt();
                     linkedlist.search(key);
+                    linkedlist.display();
                     break;
                 case 6:
+                    System.out.println("insert key:");
+                    int ele= scanner.nextInt();
+                    linkedlist.insert(ele);
+                    linkedlist.display();
+
+                case 7:
+                    System.out.println("enter node to delete:");
+                    int elements= scanner.nextInt();
+                    linkedlist.delete(elements);
+                    linkedlist.display();
+                case 8:
                     status=false;
                     break;
-
             }
         } while(status);
     }
