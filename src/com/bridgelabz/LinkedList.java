@@ -16,64 +16,44 @@ public class LinkedList {
     }
 
     public void addNode(int data){
-        Node newNode=new Node(data);
-        newNode.data=data;
-        newNode.next=head;
-        head=newNode;
+        Node newnode=new Node(data);
+        if(this.head==null){
+            head=newnode;
+        }
+        else{
+            Node last=this.head;
+            while(last.next!=null){
+                last=last.next;
+            }
+            last.next=newnode;
+        }
     }
 
 
     public void display(){
-        Node temp=head;
-
         if(head==null){
             System.out.println("empty list");
-            return;
         }
-        while(temp!=null){
-            System.out.print("->"+temp.data+"");
-            temp=temp.next;
-        }
-    }
-    public void reverse_display(){
         Node temp=head;
-        Node prev=null,current;
-
-        while (temp!=null){
-            current=temp;
+        while(temp.next!=null){
+            System.out.print("->"+temp.data);
             temp=temp.next;
-
-            current.next=prev;
-            prev=current;
-            head=current;
-            //System.out.println(temp.data);
         }
+        if(temp.next==null){
+            System.out.println("->"+temp.data);
+        }
+
     }
+
 
     public static void main(String[] args) {
         // write your code here
         LinkedList linkedlist=new LinkedList();
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("enter first element:");
-        int data1=scanner.nextInt();
-        linkedlist.addNode(data1);
-        System.out.println("enter second element:");
-        int data2=scanner.nextInt();
-        linkedlist.addNode(data2);
-        System.out.println("enter third element:");
-        int data3=scanner.nextInt();
-        linkedlist.addNode(data3);
-        System.out.println("enter choice");
-        int ch= scanner.nextInt();
-        switch(ch) {
-            case 1:
-                linkedlist.reverse_display();
-                linkedlist.display();
-                break;
-            case 2:
-                System.out.println("exit");
-                break;
-        }
+        linkedlist.addNode(56);
+        linkedlist.addNode(30);
+        linkedlist.addNode(70);
+        linkedlist.display();
+
 
 
     }
